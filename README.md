@@ -1,10 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
 
 * System dependencies
@@ -17,6 +12,12 @@ Things you may want to cover:
 
 * How to run the test suite
 
+```
+docker-compose build web
+docker-compose run --rm web bash
+RAILS_ENV=test bundle exec rspec spec/models/role_spec.rb
+```
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
@@ -24,3 +25,4 @@ Things you may want to cover:
 * ...
 https://github.com/norman/friendly_id
 https://github.com/RolifyCommunity/rolify
+https://github.com/jsonapi-rb/jsonapi-rails/tree/master/spec
