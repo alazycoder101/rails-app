@@ -19,6 +19,7 @@ module ApiHelpers
     headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json'  }
     # This will add a valid token for `user` in the `Authorization` header
     auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
+    auth_headers
   end
 
   def set_devise_mapping

@@ -39,5 +39,13 @@ describe "User" do
       puts response.body
     end
   end
+
+  describe "Slug" do
+    it 'with correct password' do
+      get "/api/v1/users/#{user.slug}", headers: api_v1_headers(user)
+      puts response.body
+      expect(response).to be_successful
+    end
+  end
 end
 

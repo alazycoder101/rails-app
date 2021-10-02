@@ -1,4 +1,4 @@
-class Api::V1::UsersController < Api::BaseController
+class Api::V1::UsersController < Api::V1::ApiController
 
   before_action :find_user, only: %w[show]
 
@@ -9,7 +9,7 @@ class Api::V1::UsersController < Api::BaseController
   private
 
   def find_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
 end

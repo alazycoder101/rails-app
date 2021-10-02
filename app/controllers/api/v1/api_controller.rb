@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::ApiController < ActionController::API
+class Api::V1::ApiController < ApplicationController
   include Authentication
   include Pundit
 
@@ -14,10 +14,6 @@ class Api::V1::ApiController < ActionController::API
               with: :render_bad_request_response
   rescue_from Pundit::NotAuthorizedError,
               with: :render_not_authorized_response
-
-  before_action do
-    self.namespace_for_serializer = Api::V1
-  end
 
   protected
 
