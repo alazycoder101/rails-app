@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2021_10_02_001054) do
     t.string "jti", null: false
     t.string "aud"
     t.datetime "exp", null: false
-    t.integer "users_id", null: false
+    t.integer "user_id", null: false
     t.index ["jti"], name: "index_allowlisted_jwts_on_jti", unique: true
-    t.index ["users_id"], name: "index_allowlisted_jwts_on_users_id"
+    t.index ["user_id"], name: "index_allowlisted_jwts_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -74,5 +74,5 @@ ActiveRecord::Schema.define(version: 2021_10_02_001054) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "allowlisted_jwts", "users", column: "users_id", on_delete: :cascade
+  add_foreign_key "allowlisted_jwts", "users", column: "user_id", on_delete: :cascade
 end

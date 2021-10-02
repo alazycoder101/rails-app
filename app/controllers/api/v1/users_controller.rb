@@ -1,4 +1,4 @@
-class Api::UsersController < Api::BaseController
+class Api::V1::UsersController < Api::BaseController
 
   before_action :find_user, only: %w[show]
 

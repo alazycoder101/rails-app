@@ -10,7 +10,7 @@ class User < ApplicationRecord
   include Devise::JWT::RevocationStrategies::Allowlist
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable, :confirmable, :trackable,
+         :recoverable, :validatable, :trackable,
         :jwt_authenticatable, jwt_revocation_strategy: self
 
   after_create :assign_default_role
