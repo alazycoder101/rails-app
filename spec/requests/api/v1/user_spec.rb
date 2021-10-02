@@ -40,11 +40,16 @@ describe "User" do
     end
   end
 
-  describe "Slug" do
-    it 'with correct password' do
+  describe "Show" do
+    it 'get own user' do
       get "/api/v1/users/#{user.slug}", headers: api_v1_headers(user)
-      puts response.body
       expect(response).to be_successful
+    end
+
+    it 'get other user' do
+      other_user = create_user
+      get "/api/v1/users/#{other_user.slug}", headers: api_v1_headers(user)
+      expect(response).not_to be_successful
     end
   end
 end
