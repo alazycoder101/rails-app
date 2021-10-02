@@ -1,0 +1,21 @@
+# docker-compose up
+# docker-compose run web rake db:migrate db:seed
+#
+version: '3.7'
+services:
+  web:
+    build: .
+    command: bundle exec rails s -p 3707 -b '0.0.0.0'
+    volumes:
+      - .:/opt/app
+    ports:
+      - "3707:3707"
+    environment:
+      - "RAILS_ENV=development"
+      - "DATABASE_HOST=db"
+      - "DATABASE_USER=postgres"
+      - "DATABASE_NAME=jogging_tracker_dev"
+      - "DEVISE_JWT_SECRET_KEY=${DEVISE_JWT_SECRET_KEY}"
+volumes:
+  db:
+    driver: local
