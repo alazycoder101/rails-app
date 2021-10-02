@@ -6,10 +6,10 @@ gem 'devise-jwt', '~> 0.7.0'
 gem 'pundit'
 gem 'rolify'
 gem 'friendly_id', '~> 5.4.0'
-gem 'foreman'
 gem 'jsonapi-rails'
 gem 'puma', '~> 5.3'
 gem 'rack-cors'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   gem 'sqlite3'
