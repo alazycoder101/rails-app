@@ -6,7 +6,9 @@ describe "User" do
 
   describe "View" do
     it 'returns no_content' do
-      expect{ get "/api/v1/users" }.to raise_error
+      get "/api/v1/users"
+      expect(response).not_to be_successful
+      expect(json['error']).to match("You need to sign in or sign up before continuing.")
     end
   end
 
@@ -50,6 +52,13 @@ describe "User" do
       other_user = create_user
       get "/api/v1/users/#{other_user.slug}", headers: api_v1_headers(user)
       expect(response).not_to be_successful
+    end
+
+    it 'get other user as admin' do
+      user.add_role(:admin)
+      other_user = create_user
+      get "/api/v1/users/#{other_user.slug}", headers: api_v1_headers(user)
+      expect(response).to be_successful
     end
   end
 end
