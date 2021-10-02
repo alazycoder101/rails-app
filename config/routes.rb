@@ -2,21 +2,19 @@ Rails.application.routes.default_url_options[:host] = 'localhost:3001'
 
 Rails.application.routes.draw do
 
-  namespace :api, defaults: { format: :json } do
-    resources :users, only: %w[show]
-  end
+  root to: 'home#index'
 
-  devise_for :users,
-    defaults: { format: :json },
-    path: '',
-    path_names: {
-      sign_in: 'api/login',
-      sign_out: 'api/logout',
-      registration: 'api/signup'
-    },
-    controllers: {
-      sessions: 'sessions',
-      registrations: 'registrations'
-    }
+  scope '/api/v1' do
+    devise_for :users,
+      :defaults => {
+        :format => :json
+      },
+      :controllers => {
+        :registrations => 'api/v1/registrations',
+        :sessions => 'api/v1/sessions',
+        :passwords => 'api/v1/passwords',
+        :confirmations => 'api/v1/confirmations'
+      }
+  end
 
 end
