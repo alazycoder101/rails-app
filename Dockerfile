@@ -1,13 +1,18 @@
-FROM ruby:3.0.2
+ARG RUBY_VERSION=3.0.3
+FROM ruby:$RUBY_VERSION-slim
+
+RUN apt-get update -qq && \
+    apt-get install -y -q build-essential sqlite3 libsqlite3-dev
 
 ARG app=/opt/app
 WORKDIR $app
 
-ADD Gemfile Gemfile.lock ./
+#ADD Gemfile Gemfile.lock ./
+ADD Gemfile ./
 RUN gem install bundler && \
     bundle config set deployment 'false' && \
     bundle config set with 'development' && \
-    bundle install
+    bundle install --jobs 5 --retry 3
 
 ENV RAILS_ROOT=$app \
     RAILS_ENV=${RAILS_ENV:-production} \
